@@ -1,5 +1,13 @@
+
 __pycache__/
 *.pyc
-db.sqlite3
-.git/
+*.pyo
 .env
+.env.*
+db.sqlite3
+*.sqlite3
+staticfiles/
+.venv/
+venv/
+.git/
+.gitignore
