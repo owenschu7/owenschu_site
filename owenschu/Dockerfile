@@ -7,6 +7,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-RUN python manage.py collectstatic --noinput
+RUN SECRET_KEY=build-only-not-a-real-key python manage.py collectstatic --noinput
 
 CMD exec gunicorn owenschu.wsgi:application --bind :$PORT --workers 2 --threads 8 --timeout 0
