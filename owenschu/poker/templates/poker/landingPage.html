@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poker Tracker</title>
+  <link rel="stylesheet" href="{% static 'poker/css/landingPage.css' %}" />
+</head>
+<body>
+  <div class="landing-page">
+    <section class="hero">
+      <h1 class="hero-title">Poker Tracker</h1>
+      <p class="hero-tagline">Track every hand. Own the table.</p>
+      <div class="poker-table">
+        <img class="poker-table__felt" src="{% static 'poker/assets/svg/poker-table.svg' %}" alt="" />
+        <div class="seat seat--top-right"><img src="{% static 'poker/assets/svg/seat-empty.svg' %}" alt="Empty seat" /></div>
+        <div class="seat seat--top-left"><img src="{% static 'poker/assets/svg/seat-empty.svg' %}" alt="Empty seat" /></div>
+        <div class="seat seat--bottom-left"><img src="{% static 'poker/assets/svg/seat-empty.svg' %}" alt="Empty seat" /></div>
+        <div class="seat seat--bottom-right"><img src="{% static 'poker/assets/svg/seat-empty.svg' %}" alt="Empty seat" /></div>
+        <div class="seat seat--left"><img src="{% static 'poker/assets/svg/seat-empty.svg' %}" alt="Empty seat" /></div>
+        <div class="seat seat--top"><img src="{% static 'poker/assets/svg/seat-empty.svg' %}" alt="Empty seat" /></div>
+        <div class="seat seat--right"><img src="{% static 'poker/assets/svg/seat-empty.svg' %}" alt="Empty seat" /></div>
+        <div class="seat seat--bottom"><img src="{% static 'poker/assets/svg/seat-empty.svg' %}" alt="Empty seat" /></div>
+      </div>
+    </section>
+
+    <section class="sheet">
+      <h2 class="sheet-heading">Welcome</h2>
+      <p class="sheet-body">Sign in to track your sessions, or create an account to get started.</p>
+      <button type="button" class="btn btn--primary">Sign Up</button>
+      <button type="button" class="btn btn--secondary">Sign In</button>
+      <p class="sheet-footer">owen's poker tracker</p>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,33 +1,17 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>owenschu.com</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
   <header class="nav-bar">
     <p class="nav-bar__logo">owenschu.com</p>
 
     <nav class="nav-links" id="navLinks">
-      <div class="nav-dropdown">
-        <!-- Clicking this goes to the project list page -->
-        <a class="nav-links__item" href="{% url 'projects_list' %}">Projects</a>
-
-        <!-- Hovering reveals this menu -->
-        <ul class="nav-dropdown__menu">
-          {% for project in navbar_projects %}
-          <li>
-            <a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
-          </li>
-          {% empty %}
-          <li><span class="empty-msg">More coming soon</span></li>
-          {% endfor %}
-        </ul>
-      </div>
+      <a class="nav-links__item" href="#projects">Projects</a>
       <a class="nav-links__item" href="#about">About</a>
       <a class="nav-links__item" href="#contact">Contact</a>
     </nav>
@@ -59,10 +43,8 @@
   <footer class="footer">
     <p class="footer__copy">© 2026 Your Name. All rights reserved.</p>
     <div class="social-links">
-      <a class="social-links__item" href="https://github.com/owenschu7" target="_blank" rel="noopener noreferrer">
-        <img class="social-icon" src="{% static 'assets/github-black-logo.svg' %}" alt="GitHub Logo" width="20" height="20">
-        GitHub
-      </a>
+      <a class="social-links__item" href="#">GitHub</a>
+      <a class="social-links__item" href="#">LinkedIn</a>
       <a class="social-links__item" href="#">Email</a>
     </div>
   </footer>

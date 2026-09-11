@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Projects</title>
+  <style>
+    /* Add your custom list CSS here */
+    body { font-family: sans-serif; background: #111; color: #fff; }
+    .projects-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+    .project-card { border: 1px solid #333; padding: 20px; width: 300px; }
+    a { color: #00ffcc; }
+  </style>
+</head>
+<body>
+  
+  <h1>My Projects</h1>
+  <div class="projects-grid">
+    {% for project in projects %}
+      <div class="project-card">
+        <h2><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h2>
+        <p><strong>{{ project.technology }}</strong></p>
+        <p>{{ project.description|truncatewords:20 }}</p>
+      </div>
+    {% empty %}
+      <p>No projects added yet.</p>
+    {% endfor %}
+  </div>
+
+</body>
+</html>

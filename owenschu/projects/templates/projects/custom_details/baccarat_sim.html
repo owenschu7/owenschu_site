@@ -1,0 +1,45 @@
+<!--EXAMPLE PAGE FOR A PROJECT-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ project.title }} - My Portfolio</title>
+  <style>
+    /* Custom CSS ONLY for this baccarat project */
+    .casino-table { background-color: darkgreen; border: 5px solid brown; padding: 50px; }
+    .card { background: white; color: black; padding: 10px; margin: 5px; display: inline-block;}
+  </style>
+</head>
+<body>
+
+  <!-- Using data from your Django Model -->
+  <header>
+    <h1>{{ project.title }}</h1>
+    <p>{{ project.description }}</p>
+    <a href="{{ project.github_link }}">View Source Code</a>
+  </header>
+
+  <!-- Custom Functionality / UI just for this page -->
+  <div class="casino-table">
+    <h2>Live Simulation Area</h2>
+    <div id="game-board">
+      <!-- JS will populate this -->
+    </div>
+    <button onclick="dealCards()">Deal Cards</button>
+  </div>
+
+  <script>
+    // You can write custom logic or call microservices here!
+    function dealCards() {
+      // Example microservice call
+      fetch('https://api.your-microservice.com/baccarat/deal')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Cards dealt:", data);
+            // update UI...
+        });
+    }
+  </script>
+
+</body>
+</html>
