@@ -2,8 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.template.exceptions import TemplateDoesNotExist
 from .models import Project
 
-# Instead of sending every project to one generic template
-# tell Django to look for an html file that matches the project's slug
+# tell django to look for an html file that matches the project's slug in custom_details
 def projects_list(request):
     projects = Project.objects.all()
     return render(request, 'projects/project_list.html', {'projects': projects})
