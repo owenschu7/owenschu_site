@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'django_db',
         'USER': 'django_user',
         'PASSWORD': os.getenv('DB_PASSWORD'), 
-        'HOST': '10.0.0.3',
+        'HOST': '10.0.0.3', # staging postgres database (not production)
         'PORT': '5432',
     }
 }
