@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'django_db',
         'USER': 'django_user',
         'PASSWORD': os.getenv('DB_PASSWORD'), 
-        'HOST': '10.0.0.2', # Replace this with your VM's actual Internal IP!
+        'HOST': '10.0.0.2',
         'PORT': '5432',
     }
 }
