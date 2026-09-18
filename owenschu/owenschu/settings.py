@@ -29,12 +29,6 @@ if not DEBUG and SECRET_KEY == 'django-insecure-local-dev-only':
 
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-
-# SECURITY WARNING: don't run with debug turned on in production!
 
 
 # Application definition
@@ -48,11 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects',
     'poker',
+    'resume',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'owenschu.whitenoise.SiteWhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,6 +71,9 @@ TEMPLATES = [
 
                 # for navbar dropdown menu
                 'projects.context_processors.global_projects',
+
+                # for the resume section on the home page
+                'resume.context_processors.resume_context',
             ],
         },
     },
@@ -97,6 +95,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -145,6 +144,16 @@ STORAGES = {
         else "whitenoise.storage.CompressedManifestStaticFilesStorage"
     },
 }
+
+# Hashed files under STATIC_ROOT (style.css, hero.css, ...) are cached
+# forever automatically since their filename changes when their content
+# does. godot-export/ isn't hashed (see owenschu/whitenoise.py), so give it
+# an explicit, shorter lifetime: long enough that a repeat visit within the
+# same day doesn't re-download 37MB, short enough that a redeploy of the
+# Godot build reaches visitors same-day without a cache-bust. Disabled in
+# DEBUG so iterating on the Godot export locally doesn't get masked by a
+# browser silently replaying a stale cached .pck/.wasm for hours.
+WHITENOISE_MAX_AGE = 0 if DEBUG else 60 * 60 * 6
 
 
 # Email

@@ -22,4 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_view, name='home'),
     path('projects/', include('projects.urls')),
+
+    # /godot-export/<filename> is served by SiteWhiteNoiseMiddleware
+    # (owenschu/whitenoise.py), not routed here -- WhiteNoise intercepts
+    # matching requests before they reach URL resolution.
 ]

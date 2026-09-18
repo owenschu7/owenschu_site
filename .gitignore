@@ -5,3 +5,5 @@ __pycache__/
 db.sqlite3
 staticfiles/
 .venv/
+owenschu/godot-export/*.gz
+owenschu/godot-export/*.br

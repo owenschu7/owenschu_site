@@ -1,0 +1,66 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'resume/resume.css' %}">
+
+<section class="resume" id="resume">
+  {% if resume_profile %}
+  <div class="resume__intro">
+    <h2 class="resume__name">{{ resume_profile.name }}</h2>
+    <p class="resume__headline">{{ resume_profile.headline }}</p>
+    <p class="resume__summary">{{ resume_profile.summary }}</p>
+    <div class="resume__meta">
+      {% if resume_profile.location %}<span>{{ resume_profile.location }}</span>{% endif %}
+      {% if resume_profile.email %}<a href="mailto:{{ resume_profile.email }}">{{ resume_profile.email }}</a>{% endif %}
+      {% if resume_profile.resume_link %}<a href="{{ resume_profile.resume_link }}" target="_blank" rel="noopener noreferrer">Download resume</a>{% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="resume__columns">
+    <div class="resume__column">
+      <h3 class="resume__heading">Education</h3>
+      {% for edu in resume_education %}
+      <div class="resume__entry">
+        <div class="resume__entry-top">
+          <p class="resume__entry-title">{{ edu.degree }}{% if edu.field_of_study %}, {{ edu.field_of_study }}{% endif %}</p>
+          <span class="resume__dates">{{ edu.start_date|date:"Y" }} &ndash; {% if edu.end_date %}{{ edu.end_date|date:"Y" }}{% else %}Present{% endif %}</span>
+        </div>
+        <p class="resume__entry-subtitle">{{ edu.institution }}{% if edu.location %} &middot; {{ edu.location }}{% endif %}</p>
+        {% if edu.description %}<p class="resume__entry-description">{{ edu.description }}</p>{% endif %}
+      </div>
+      {% empty %}
+      <p class="resume__empty">No education listed yet.</p>
+      {% endfor %}
+
+      <h3 class="resume__heading">Experience</h3>
+      {% for job in resume_experience %}
+      <div class="resume__entry">
+        <div class="resume__entry-top">
+          <p class="resume__entry-title">{{ job.title }}</p>
+          <span class="resume__dates">{{ job.start_date|date:"M Y" }} &ndash; {% if job.end_date %}{{ job.end_date|date:"M Y" }}{% else %}Present{% endif %}</span>
+        </div>
+        <p class="resume__entry-subtitle">{{ job.company }}{% if job.location %} &middot; {{ job.location }}{% endif %}</p>
+        {% if job.description %}<p class="resume__entry-description">{{ job.description }}</p>{% endif %}
+      </div>
+      {% empty %}
+      <p class="resume__empty">No experience listed yet.</p>
+      {% endfor %}
+    </div>
+
+    <div class="resume__column resume__column--skills">
+      <h3 class="resume__heading">Skills</h3>
+      {% regroup resume_skills by get_category_display as skill_groups %}
+      {% for group in skill_groups %}
+      <div class="resume__skill-group">
+        <p class="resume__skill-category">{{ group.grouper }}</p>
+        <div class="resume__skill-chips">
+          {% for skill in group.list %}
+          <span class="resume__skill-chip">{{ skill.name }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% empty %}
+      <p class="resume__empty">No skills listed yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
