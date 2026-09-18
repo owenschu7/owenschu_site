@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR.parent / '.env')
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-dev-only')
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 CSRF_TRUSTED_ORIGINS = ['https://*.run.app']
 
@@ -29,12 +29,6 @@ if not DEBUG and SECRET_KEY == 'django-insecure-local-dev-only':
 
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-
-# SECURITY WARNING: don't run with debug turned on in production!
 
 
 # Application definition
@@ -48,11 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects',
     'poker',
+    'resume',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'owenschu.whitenoise.SiteWhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,6 +71,9 @@ TEMPLATES = [
 
                 # for navbar dropdown menu
                 'projects.context_processors.global_projects',
+
+                # for the resume section on the home page
+                'resume.context_processors.resume_context',
             ],
         },
     },
@@ -87,16 +85,29 @@ WSGI_APPLICATION = 'owenschu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_db',
-        'USER': 'django_user',
-        'PASSWORD': os.getenv('DB_PASSWORD'), 
-        'HOST': '10.0.0.3', # staging postgres database (not production)
-        'PORT': '5432',
+
+# If 'USE_LOCAL_DB' is set to 'True' in your environment, use SQLite
+if os.getenv('USE_LOCAL_DB') == 'True':
+    # Local sqlite database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # VPC postgres database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'django_db',
+            'USER': 'django_user',
+            'PASSWORD': os.getenv('DB_PASSWORD'), 
+            'HOST': '10.0.0.3', # staging postgres database (not production)
+            'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -145,6 +156,16 @@ STORAGES = {
         else "whitenoise.storage.CompressedManifestStaticFilesStorage"
     },
 }
+
+# Hashed files under STATIC_ROOT (style.css, hero.css, ...) are cached
+# forever automatically since their filename changes when their content
+# does. godot-export/ isn't hashed (see owenschu/whitenoise.py), so give it
+# an explicit, shorter lifetime: long enough that a repeat visit within the
+# same day doesn't re-download 37MB, short enough that a redeploy of the
+# Godot build reaches visitors same-day without a cache-bust. Disabled in
+# DEBUG so iterating on the Godot export locally doesn't get masked by a
+# browser silently replaying a stale cached .pck/.wasm for hours.
+WHITENOISE_MAX_AGE = 0 if DEBUG else 60 * 60 * 6
 
 
 # Email

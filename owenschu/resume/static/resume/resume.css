@@ -1,0 +1,162 @@
+/*
+  Resume section -- self-contained styling for the resume app, loaded via
+  resume/templates/resume/section.html. Uses the same palette as the rest
+  of the site (style.css: #000 text, #666/#808080 secondary, #e6e6e6
+  borders, #d9d9d9 fill, 8px radius) so it doesn't look bolted-on.
+*/
+
+.resume {
+  width: 100%;
+  padding: 64px;
+  border-top: 1px solid #e6e6e6;
+}
+
+.resume__intro {
+  max-width: 720px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.resume__name {
+  margin: 0 0 4px;
+  font-weight: 700;
+  font-size: 32px;
+  color: #000000;
+}
+
+.resume__headline {
+  margin: 0 0 16px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #5c40f2;
+}
+
+.resume__summary {
+  margin: 0 0 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666666;
+}
+
+.resume__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.resume__meta span {
+  color: #808080;
+}
+
+.resume__meta a {
+  color: #000000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.resume__columns {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 48px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.resume__heading {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #808080;
+}
+
+.resume__column .resume__heading:not(:first-child) {
+  margin-top: 40px;
+}
+
+.resume__entry {
+  margin-bottom: 24px;
+}
+
+.resume__entry-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.resume__entry-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000000;
+}
+
+.resume__dates {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: #808080;
+  white-space: nowrap;
+}
+
+.resume__entry-subtitle {
+  margin: 2px 0 8px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.resume__entry-description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666666;
+}
+
+.resume__empty {
+  font-size: 14px;
+  color: #808080;
+  font-style: italic;
+}
+
+.resume__skill-group {
+  margin-bottom: 20px;
+}
+
+.resume__skill-category {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.resume__skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resume__skill-chip {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #d9d9d9;
+  font-size: 13px;
+  color: #333333;
+}
+
+@media (max-width: 820px) {
+  .resume {
+    padding: 48px 24px;
+  }
+
+  .resume__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .resume__column .resume__heading:not(:first-child) {
+    margin-top: 40px;
+  }
+}
