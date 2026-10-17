@@ -22,7 +22,10 @@ load_dotenv(BASE_DIR.parent / '.env')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-dev-only')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
-CSRF_TRUSTED_ORIGINS = ['https://*.run.app']
+CSRF_TRUSTED_ORIGINS = [
+        'https://owenschu.com',
+        'https://www.owenschu.com',
+        ]
 
 if not DEBUG and SECRET_KEY == 'django-insecure-local-dev-only':
     raise ImproperlyConfigured('SECRET_KEY must be set in production')
