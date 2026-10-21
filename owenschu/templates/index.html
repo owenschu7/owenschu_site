@@ -43,35 +43,8 @@
        so it paints above the fixed canvas instead of behind it -->
   <div class="page-content">
 
-    <header class="nav-bar">
-      <p class="nav-bar__logo">owenschu.com</p>
-
-      <nav class="nav-links" id="navLinks">
-        <div class="nav-dropdown">
-          <!-- Clicking this goes to the project list page -->
-          <a class="nav-links__item" href="{% url 'projects_list' %}">Projects</a>
-
-          <!-- Hovering reveals this menu -->
-          <ul class="nav-dropdown__menu">
-            {% for project in navbar_projects %}
-            <li>
-              <a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
-            </li>
-            {% empty %}
-            <li><span class="empty-msg">More coming soon</span></li>
-            {% endfor %}
-          </ul>
-        </div>
-        <a class="nav-links__item" href="#about">About</a>
-        <a class="nav-links__item" href="#contact">Contact</a>
-      </nav>
-
-      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-      </button>
-    </header>
+    {% include navigation.html %}
+    
 
     <main class="hero" id="projects">
       <!-- CHANGED: h1 scramble-decodes in place (see scrambleReveal() below); everything else
