@@ -1,65 +1,35 @@
 /*
-  Page-specific stylesheet for the Godot smoke background + scramble effect.
+  Page-specific stylesheet for the hero section's scramble effect.
   Written to be safe to load alongside an existing site stylesheet:
-  - custom properties are prefixed --godot- to avoid colliding with your
-    own theme variables
   - no bare html/body font-family/background/color overrides (those would
     clobber your site's real theme) -- monospace is scoped to .scramble
     only, where it matters so characters don't jitter width mid-decode
   - no .hero / h1 / h2 rules -- your own styling owns your headings
 */
 
-:root {
-  --godot-bg: #fafafa;
-  --godot-accent-a: #5c40f2;
-  --godot-accent-b: #f24fbf;
-}
-
 html, body {
   overflow-x: hidden;
 }
 
-/*
-  Godot's canvas, repurposed as the full-viewport shader background.
-
-  !important is required here: once the engine boots, Godot's own JS
-  (GodotDisplayScreen, in the exported .js) sets an INLINE style of
-  position:absolute; top:0; left:0 on this canvas (this happens for any
-  canvasResizePolicy other than 0). Inline styles always beat external
-  stylesheet rules regardless of selector specificity, so without
-  !important this rule gets silently overridden the moment the engine
-  starts -- the canvas would then scroll away with the page (absolute)
-  instead of staying pinned as a background (fixed). Godot's own
-  width/height sizing logic is fine as-is and is left alone.
-*/
+/* Game of Life canvas, pinned as the full-viewport background. */
 #canvas {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
   width: 100%;
   height: 100%;
   display: block;
-  background: var(--godot-bg);
-  pointer-events: none;
-}
-#canvas:focus { outline: none; }
-
-/* Reduced-motion / mobile visits: Godot never loads, so the canvas just
-   sits there as a static gradient instead of a flat, sudden-looking color. */
-#canvas.is-static-fallback {
-  background: linear-gradient(160deg, var(--godot-bg) 55%, var(--godot-accent-a) 140%);
+  background: #fafafa;
 }
 
 /*
-  Wrap ALL your existing page content (header, main, footer -- everything
-  already in your home template) in a single element with this class.
-  Required: a plain unpositioned element (e.g. a bare <header> with no
-  position/z-index set) paints BEHIND a position:fixed, z-index:0 element
-  regardless of DOM order, so without this your nav/content could end up
-  hidden under the smoke background.
+  Everything else on the page (header, main, footer) is wrapped in this
+  class. Required: a plain unpositioned element paints BEHIND a
+  position:fixed, z-index:0 element regardless of DOM order, so without
+  this your nav/content would end up hidden under the background.
 */
 .page-content {
   position: relative;

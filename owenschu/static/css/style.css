@@ -166,6 +166,7 @@ a {
   justify-content: center;
   gap: 32px;
   width: 100%;
+  margin-top: 300px;
 }
 
 .project-box {
@@ -173,10 +174,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 360px;
-  height: 240px;
+  width: 320px;
+  height: 140px;
   padding: 16px;
-  background: #d9d9d9;
+  background: rgba(217, 217, 217, 0.25);
   border-radius: 8px;
 }
 

@@ -29,3 +29,22 @@
     <span class="nav-toggle__bar"></span>
   </button>
 </header>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('nav-links--open');
+    navToggle.classList.toggle('nav-toggle--open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  navLinks.querySelectorAll('.nav-links__item').forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('nav-links--open');
+      navToggle.classList.remove('nav-toggle--open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
