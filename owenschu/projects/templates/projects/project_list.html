@@ -13,21 +13,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+  <style>
+    /* stop the nav bar from animating */
+    .nav-bar {
+      transform: translateY(0) !important;
+      transition: none !important;
+    }
+    .projects-grid {
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .project-card {
+      border: 1px solid #333;
+      padding: 20px;
+      width: 300px;
+    }
+  </style>
 </head>
 <body>
   
-  <h1>My Projects</h1>
-  <div class="projects-grid">
-    {% for project in projects %}
-      <div class="project-card">
-        <h2><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h2>
-        <p><strong>{{ project.technology }}</strong></p>
-        <p>{{ project.description|truncatewords:20 }}</p>
-      </div>
-    {% empty %}
-      <p>No projects added yet.</p>
-    {% endfor %}
+  <div class="page_content">
+    {% include 'navigation.html' %}
+
+    <h1 class="hero__title">My Projects</h1>
+    <div class="projects-grid">
+      {% for project in projects %}
+        <div class="project-card">
+          <h1><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h1>
+          <p><strong>{{ project.technology }}</strong></p>
+          <p>{{ project.description|truncatewords:20 }}</p>
+        </div>
+      {% empty %}
+        <p>No projects added yet.</p>
+      {% endfor %}
+    </div>
+
   </div>
+  
 
 </body>
 </html>

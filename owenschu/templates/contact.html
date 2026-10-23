@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owen Schumacher - Contact</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+  <link rel="icon" type="image/svg+xml" href="{% static 'assets/favicon.svg' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+  <style>
+    /* stop the nav bar from animating */
+    .nav-bar {
+      transform: translateY(0) !important;
+      transition: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="page_content">
+    {% include 'navigation.html' %}
+
+    <h1 class="hero__title">Contact</h1>
+    
+    <p>Coming Soon.</p>
+
+  </div>
+  
+
+</body>
+</html>

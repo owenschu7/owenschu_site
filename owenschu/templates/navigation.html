@@ -1,7 +1,7 @@
 <!--Navigation bar-->
 
 <header class="nav-bar">
-  <p class="nav-bar__logo">owenschu.com</p>
+  <p class="nav-bar__logo"><a href="{% url 'home' %}">owenschu.com</a></p>
 
   <nav class="nav-links" id="navLinks">
     <div class="nav-dropdown">
@@ -19,8 +19,8 @@
         {% endfor %}
       </ul>
     </div>
-    <a class="nav-links__item" href="#about">About</a>
-    <a class="nav-links__item" href="#contact">Contact</a>
+    <a class="nav-links__item"><a href="{% url 'about' %}">About</a></a>
+    <a class="nav-links__item"><a href="{% url 'contact' %}">Contact</a></a>
   </nav>
 
   <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
