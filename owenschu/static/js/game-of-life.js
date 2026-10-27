@@ -1,17 +1,15 @@
-// Conway's Game of Life, rendered full-viewport behind the page content
-// (see #canvas in hero.css). Skipped entirely on prefers-reduced-motion,
-// since it's a continuously-animating background.
+//ai written implementation of conways game of life
+//
 (function () {
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const canvas = document.getElementById("canvas");
-  if (!canvas || prefersReducedMotion) return;
+  if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
 
   const CELL_SIZE = 10;
-  const TICK_MS = 120;
-  const SEED_DENSITY = 0.10;
-  const CELL_COLOR = "rgba(0, 0, 0, 0.08)";
+  const TICK_MS = 80;
+  const SEED_DENSITY = 0.50;
+  const CELL_COLOR = "rgba(0, 0, 0, 0.03)";
 
   let cols, rows;
   let grid;
@@ -122,7 +120,7 @@
     canvas.height = window.innerHeight;
     cols = Math.ceil(canvas.width / CELL_SIZE);
     rows = Math.ceil(canvas.height / CELL_SIZE);
-    grid = seededGrid();
+    grid = randomGrid();
   }
 
   function countNeighbors(g, x, y) {

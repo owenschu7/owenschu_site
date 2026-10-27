@@ -7,13 +7,13 @@
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  const SCRAMBLE_CHARS = "!<>-_\\/[]{}—=+*^?#________ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const SCRAMBLE_CHARS = "*&^$#@?!";
 
   function scrambleReveal(el) {
     return new Promise((resolve) => {
       const finalText = el.getAttribute("data-text") || el.textContent;
       const chars = Array.from(finalText);
-      const FRAME_MS = 35;
+      const FRAME_MS = 75;
       const REVEAL_STAGGER = 2;
       let frame = 0;
       const lockFrame = chars.map((_, i) => i * REVEAL_STAGGER + 4);

@@ -16,14 +16,7 @@
 </head>
 <body>
 
-  <!-- Tech-stack icon sprite: one <symbol> per technology, referenced from the
-       project cards below via <use>. Kept in one place so the icon set is
-       easy to extend later without touching card markup.
-       React/Firebase/C++/SFML/HTML5/CSS/JavaScript/Google Cloud are the
-       real brand marks (path data + official brand color from Simple
-       Icons, simpleicons.org, MIT-licensed). NoSQL and Sockets aren't
-       products with a logo of their own, so those two stay generic
-       glyphs in a neutral color. -->
+  {% include 'svgicons.html' %}
 
   <!-- Game of Life canvas, must come before the page content below -->
   <canvas id="canvas">
@@ -47,17 +40,28 @@
       <!-- CHANGED: h1 scramble-decodes in place (see scrambleReveal() below); everything else
            below it stays hidden (hero.css) until the entrance sequence reaches it -->
       <h1 class="hero__title scramble" data-text="Hi, I'm Owen">Hi, I'm Owen</h1>
-      <p class="hero__subtitle">This is my website, it is still in development, come back soon!</p>
+      <p class="hero__subtitle">This is my website, it is still in development, but here are some of the projects I am working on!</p>
 
       <div class="project-boxes">
+        <a href="https://settlethepot.com" target="_blank" style="text-decoration: none; color: inherit;">
         <div class="project-box">
           <div class="project-box__tech">
-            <span class="tech-icon" title="React"><svg><use href="#icon-react"></use></svg></span>
-            <span class="tech-icon" title="Firebase"><svg><use href="#icon-firebase"></use></svg></span>
-            <span class="tech-icon" title="NoSQL"><svg><use href="#icon-nosql"></use></svg></span>
+            <span class="tech-icon" title="Django"><svg><use href="#icon-django"></use></svg></span>
+            <span class="tech-icon" title="PostgreSQL"><svg><use href="#icon-postgres"></use></svg></span>
+            <span class="tech-icon" title="Google Cloud"><svg><use href="#icon-gcp"></use></svg></span>
           </div>
-          <span class="project-status project-status--completed">Completed</span>
-          <p class="project-box__label">Poker win/loss Tracker</p>
+          <span class="project-status project-status--completed">Live</span>
+          <p class="project-box__label">Settle The Pot - A web based poker tracker</p>
+        </div>
+        </a>
+        <div class="project-box">
+          <div class="project-box__tech">
+            <span class="tech-icon" title="C++"><svg><use href="#icon-cpp"></use></svg></span>
+            <span class="tech-icon" title="SFML"><svg><use href="#icon-sfml"></use></svg></span>
+            <span class="tech-icon" title="Sockets"><svg><use href="#icon-sockets"></use></svg></span>
+          </div>
+          <span class="project-status project-status--in_progress">In Progress</span>
+          <p class="project-box__label">sudo bet online - Server + Client built from raw POSIX sockets</p>
         </div>
         <div class="project-box">
           <div class="project-box__tech">
@@ -66,17 +70,7 @@
             <span class="tech-icon" title="Sockets"><svg><use href="#icon-sockets"></use></svg></span>
           </div>
           <span class="project-status project-status--in_progress">In Progress</span>
-          <p class="project-box__label">sudo bet online - A casino style online RPG</p>
-        </div>
-        <div class="project-box">
-          <div class="project-box__tech">
-            <span class="tech-icon" title="HTML"><svg><use href="#icon-html"></use></svg></span>
-            <span class="tech-icon" title="CSS"><svg><use href="#icon-css"></use></svg></span>
-            <span class="tech-icon" title="JavaScript"><svg><use href="#icon-js"></use></svg></span>
-            <span class="tech-icon" title="GCP"><svg><use href="#icon-gcp"></use></svg></span>
-          </div>
-          <span class="project-status project-status--in_progress">In Progress</span>
-          <p class="project-box__label">To Be Determined...</p>
+          <p class="project-box__label">MouseTrace - Testing software for Micro-Mouse competition</p>
         </div>
       </div>
     </main>
@@ -85,13 +79,12 @@
 
 
     <footer class="footer">
-      <p class="footer__copy">© 2026 Owen Schumacher. All rights reserved.</p>
+      <p class="footer__copy">© 2026 Owen Schumacher.</p>
       <div class="social-links">
         <a class="social-links__item" href="https://github.com/owenschu7" target="_blank" rel="noopener noreferrer">
           <img class="social-icon" src="{% static 'assets/github-black-logo.svg' %}" alt="GitHub Logo" width="20" height="20">
           GitHub
         </a>
-        <a class="social-links__item" href="#">Email</a>
       </div>
     </footer>
 
