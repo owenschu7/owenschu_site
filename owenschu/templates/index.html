@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -7,6 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Owen Schumacher - Portfolio</title>
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+  <meta property="og:title" content="Owen Schumacher - Portfolio" />
+  <meta property="og:description" content="Computer Science student. View my projects and resume." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://owenschu.com/" />
+  <meta property="og:image" content="https://owenschu.com{% static 'assets/website_preview.png' %}" />
 
   <link rel="icon" type="image/svg+xml" href="{% static 'assets/favicon.svg' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
